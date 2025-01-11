@@ -2,7 +2,6 @@ package net.engineeringdigest.journalApp.controller;
 
 import net.engineeringdigest.journalApp.Journalservice.Userservice;
 import net.engineeringdigest.journalApp.entity.User;
-import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,8 +14,6 @@ import java.util.List;
 public class Usercontroller {
 
     @Autowired
-    private Userservice usservice;
-    @Autowired
     private Userservice userservice;
 
     @GetMapping
@@ -28,14 +25,17 @@ public class Usercontroller {
         userservice.userentry(newUser);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
-    @PutMapping("/{username}")
-    public ResponseEntity<?> update(@RequestBody User newUser, @PathVariable String username){
-        User obj = userservice.findByUsername(username);
-        if(obj != null){
-            obj.setUsername(newUser.getUsername());
-            obj.setPassword(newUser.getPassword());
+    @PutMapping("/{Username}")
+    public ResponseEntity<?> updateuser(@RequestBody User newUser, @PathVariable String Username){
+        User objj = userservice.findByUsername(Username);
+        if(objj != null) {
+            objj.setUsername(newUser.getUsername());
+            objj.setPassword(newUser.getPassword());
+            userservice.userentry(objj);
         }
-        userservice.userentry(newUser);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
+
+
+
 }

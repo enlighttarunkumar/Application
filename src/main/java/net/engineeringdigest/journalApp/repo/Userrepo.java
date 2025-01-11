@@ -1,4 +1,4 @@
-package net.engineeringdigest.journalApp.Jrepo;
+package net.engineeringdigest.journalApp.repo;
 
 import net.engineeringdigest.journalApp.entity.User;
 import org.bson.types.ObjectId;

@@ -13,11 +13,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Data
-@Document(collection = "user")
+@Document(collection = "user_entry")
 public class User {
     @Id
     private ObjectId id;
-
     @Indexed(unique = true)
     @NonNull
     private String Username;
