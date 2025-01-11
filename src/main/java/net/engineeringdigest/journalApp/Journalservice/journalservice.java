@@ -6,6 +6,7 @@ import net.engineeringdigest.journalApp.repo.jrepo;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -17,6 +18,7 @@ public class journalservice {
     private jrepo jerepo;
     @Autowired
     private Userservice userservice;
+    @Transactional
     public void saveentry(JournalEntry entry, String username) {
         User user = userservice.findByUsername(username);
         JournalEntry saved = jerepo.save(entry);
