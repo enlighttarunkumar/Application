@@ -23,6 +23,9 @@ public class journalservice {
         user.getUserJE().add(saved);
         userservice.userentry(user);
     }
+    public void saveentry(JournalEntry entry) {
+        jerepo.save(entry);
+    }
     public List<JournalEntry> getall() {
         return jerepo.findAll();
     }

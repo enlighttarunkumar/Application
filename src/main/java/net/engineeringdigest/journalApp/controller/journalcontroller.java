@@ -55,15 +55,16 @@ public class journalcontroller {
         jservice.delete(myid,username);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
-//    @PutMapping("id/{myid}")
-//    public ResponseEntity<?> update(@PathVariable ObjectId myid,@RequestBody JournalEntry entry){
-//        JournalEntry old = jservice.find(myid).orElse(null);
-//        if(old != null){
-//            old.setContent(entry.getContent() != null && !entry.getContent().equals("") ? entry.getContent() : old.getContent());
-//            old.setTitle(entry.getTitle() != null && !entry.getTitle().equals("") ? entry.getTitle() : old.getTitle());
-//            jservice.saveentry(old, username);
-//            return new ResponseEntity<>(old, HttpStatus.OK);
-//        }
-//        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-//    }
+    @PutMapping("id/{username}/{myid}")
+    public ResponseEntity<?> update(@PathVariable ObjectId myid,@RequestBody JournalEntry entry,@PathVariable String username){
+        JournalEntry old = jservice.find(myid).orElse(null);
+        User user = userservice.findByUsername(username);
+        if(old != null){
+            old.setContent(entry.getContent() != null && !entry.getContent().equals("") ? entry.getContent() : old.getContent());
+            old.setTitle(entry.getTitle() != null && !entry.getTitle().equals("") ? entry.getTitle() : old.getTitle());
+            jservice.saveentry(old);
+            return new ResponseEntity<>(old, HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
 }
