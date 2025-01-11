@@ -19,7 +19,7 @@ public class User {
     private ObjectId id;
     @Indexed(unique = true)
     @NonNull
-    private String Username;
+    private String username;
     @NonNull
     private String password;
     @DBRef

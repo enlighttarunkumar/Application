@@ -33,7 +33,7 @@ public class Usercontroller {
             objj.setPassword(newUser.getPassword());
             userservice.userentry(objj);
         }
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        return new ResponseEntity<>(objj,HttpStatus.CREATED);
     }
 
 

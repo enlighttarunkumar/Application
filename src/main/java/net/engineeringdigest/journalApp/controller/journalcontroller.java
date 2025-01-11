@@ -40,11 +40,11 @@ public class journalcontroller {
     @GetMapping("id/{myid}")
     public ResponseEntity<?> findById(@PathVariable ObjectId myid){
 
-            Optional<JournalEntry> obj = jservice.find(myid);
-            if(obj.isPresent()){
-                return new ResponseEntity<>(obj.get(), HttpStatus.OK);
-            }
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        Optional<JournalEntry> obj = jservice.find(myid);
+        if(obj.isPresent()){
+            return new ResponseEntity<>(obj.get(), HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
     @DeleteMapping("id/{myid}")
     public ResponseEntity<?> delete(@PathVariable ObjectId myid){
