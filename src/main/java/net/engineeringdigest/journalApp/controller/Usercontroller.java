@@ -22,7 +22,7 @@ public class Usercontroller {
     }
     @PostMapping
     public ResponseEntity<?>createUser(@RequestBody User newUser){
-        userservice.userentry(newUser);
+        userservice.newentry(newUser);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
     @PutMapping("/{Username}")
