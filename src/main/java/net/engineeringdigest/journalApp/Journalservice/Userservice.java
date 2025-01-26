@@ -24,7 +24,12 @@ public class Userservice {
     }
     public void newentry(User entry) {
         entry.setPassword(passwordEncoder.encode(entry.getPassword()));
-        entry.setRoles(Arrays.asList("User"));
+        entry.setRoles(Arrays.asList("USER"));
+        userrepo.save(entry);
+    }
+    public void adminentry(User entry) {
+        entry.setPassword(passwordEncoder.encode(entry.getPassword()));
+        entry.setRoles(Arrays.asList("USER","ADMIN"));
         userrepo.save(entry);
     }
     public List<User> getall() {
