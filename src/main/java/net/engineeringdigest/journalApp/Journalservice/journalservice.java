@@ -34,11 +34,22 @@ public class journalservice {
     public Optional<JournalEntry> find(ObjectId id){
         return jerepo.findById(id);
     }
-    public void delete(ObjectId id, String username){
-        User user = userservice.findByUsername(username);
-        user.getUserJE().removeIf(x -> x.getId().equals(id));
-        userservice.userentry(user);
-        jerepo.deleteById(id);
+    @Transactional
+    public  boolean delete(ObjectId id, String username){
+        boolean flag = false;
+        try {
+            User user = userservice.findByUsername(username);
+            flag = user.getUserJE().removeIf(x -> x.getId().equals(id));
+            if (flag) {
+                userservice.userentry(user);
+                jerepo.deleteById(id);
+            }
+        }
+        catch(Exception e){
+            System.out.println(e);
+            throw new RuntimeException("Error while saving journal entry");
+        }
+        return flag;
     }
 
 }
