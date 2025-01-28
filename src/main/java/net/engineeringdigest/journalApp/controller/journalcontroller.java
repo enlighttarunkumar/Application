@@ -1,5 +1,6 @@
 package net.engineeringdigest.journalApp.controller;
 
+import lombok.extern.slf4j.Slf4j;
 import net.engineeringdigest.journalApp.Journalservice.Userservice;
 import net.engineeringdigest.journalApp.Journalservice.journalservice;
 import net.engineeringdigest.journalApp.entity.JournalEntry;
@@ -19,6 +20,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/journal123")
+@Slf4j
 public class journalcontroller {
 
     @Autowired
@@ -46,6 +48,7 @@ public class journalcontroller {
             return new ResponseEntity<>(entry,HttpStatus.CREATED);
         }
         catch (Exception e){
+            log.error("error",e);
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
