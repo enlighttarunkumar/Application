@@ -1,5 +1,6 @@
 package net.engineeringdigest.journalApp.entity;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
@@ -16,6 +17,7 @@ import java.util.List;
 @Data
 @Document(collection = "user_entry")
 @NoArgsConstructor
+@AllArgsConstructor
 public class User {
     @Id
     private ObjectId id;
@@ -26,5 +28,7 @@ public class User {
     private String password;
     @DBRef
     private List<JournalEntry>userJE = new ArrayList<>();
+    private boolean sentiment;
+    private String email;
     private List<String>roles;
 }
